@@ -23,13 +23,17 @@ export async function getTasks(): Promise<string[]> {
   return data;
 }
 
-export async function addTask(formData: FormData) {
+export async function addTask(formData: FormData): Promise<void | { error: string }> {
   await delay();
+  const task = formData.get('task') as string;
   const validatedFields = schema.safeParse({
-    task: formData.get('task'),
+    task,
   });
   if (!validatedFields.success) {
-    return { error: 'Could not validate task'};
+    return { error: 'Could not validate task' };
+  }
+  if (data.includes(task)) {
+    return { error: 'Task already included' };
   }
   data.push(validatedFields.data.task);
   revalidatePath('/');

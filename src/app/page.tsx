@@ -1,4 +1,4 @@
-import { getTasks } from "@/api/tasks";
+import { getTasks } from "@/actions/tasks";
 import TodosComponent from "@/components/todos-component";
 
 export default async function Home() {
