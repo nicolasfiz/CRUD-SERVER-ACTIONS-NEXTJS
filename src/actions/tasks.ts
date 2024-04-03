@@ -19,7 +19,7 @@ function delay() {
 
 export async function getTasks(): Promise<string[]> {
   await delay();
-  console.log('Tasks loadaed');
+  console.log('Getting tasks...');
   return data;
 }
 
@@ -36,5 +36,23 @@ export async function addTask(formData: FormData): Promise<void | { error: strin
     return { error: 'Task already included' };
   }
   data.push(validatedFields.data.task);
+  revalidatePath('/');
+}
+
+export async function removeTask(task: string): Promise<void | { error: string }> {
+  await delay();
+  if (!task || task.length === 0) {
+    return { error: 'An error has ocurred' };
+  }
+
+  const index = data.indexOf(task);
+  if (index === 0) {
+    return { error: 'You cannot remove first task' };
+  }
+  if (index === -1) {
+    return { error: 'Task not found' };
+  }
+
+  data.splice(index, 1);
   revalidatePath('/');
 }

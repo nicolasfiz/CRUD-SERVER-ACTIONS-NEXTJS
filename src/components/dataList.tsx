@@ -1,9 +1,12 @@
-export default function DataList({ data }: { data: string[] }) {
+'use client';
+import ListElement from './listElement';
+
+export default function DataList({ tasks, deleteTask }: { tasks: string[]; deleteTask: any }) {
   return (
     <div className="flex flex-col items-center">
       <ul className="list-disc">
-        {data.map((d) => (
-          <li key={d}>{d}</li>
+        {tasks.map((t, index) => (
+          <ListElement key={index} task={t} deleteFunction={deleteTask} />
         ))}
       </ul>
     </div>
