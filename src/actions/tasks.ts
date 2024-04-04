@@ -5,7 +5,7 @@ import { z } from 'zod';
 
 const data: string[] = [];
 
-const schema = z.object({
+const taskSchema = z.object({
   task: z
     .string({
       invalid_type_error: 'Invalid task',
@@ -26,7 +26,7 @@ export async function getTasks(): Promise<string[]> {
 export async function addTask(formData: FormData): Promise<void | { error: string }> {
   await delay();
   const task = formData.get('task') as string;
-  const validatedFields = schema.safeParse({
+  const validatedFields = taskSchema.safeParse({
     task,
   });
   if (!validatedFields.success) {
@@ -54,5 +54,25 @@ export async function removeTask(task: string): Promise<void | { error: string }
   }
 
   data.splice(index, 1);
+  revalidatePath('/');
+}
+
+export async function updateTask(newTask: string, oldTask: string): Promise<void | { error: string }> {
+  await delay();
+
+  if (data.includes(newTask)) {
+    return { error: 'Task already included' };
+  }
+
+  const index = data.indexOf(oldTask);
+
+  if (index === data.length - 1) {
+    return { error: ' Last task cannot be changed' };
+  }
+  if (index === -1) {
+    return { error: 'Task not found' };
+  }
+
+  data[index] = newTask;
   revalidatePath('/');
 }

@@ -7,7 +7,7 @@ import useOptimisticTaskCUD from '@/hooks/useTaskUpdater';
 import { useState } from 'react';
 
 export default function TodosComponent({ tasks }: { tasks: string[] }) {
-  const { optimisticTasks, createTask, deleteTask } = useOptimisticTaskCUD(tasks);
+  const { optimisticTasks, createTask, deleteTask, editTask } = useOptimisticTaskCUD(tasks);
   const [taskInput, setTaskInput] = useState('');
 
   const action = async (formData: FormData) => {
@@ -27,7 +27,7 @@ export default function TodosComponent({ tasks }: { tasks: string[] }) {
           <SubmitButton text="Add to list" />
         </div>
       </form>
-      <DataList tasks={optimisticTasks} deleteTask={deleteTask} />
+      <DataList tasks={optimisticTasks} deleteTask={deleteTask} editTask={editTask} />
     </>
   );
 }
