@@ -10,7 +10,7 @@ const schema = z.object({
     .string({
       invalid_type_error: 'Invalid task',
     })
-    .refine((value) => value && value.length > 0, { message: 'Task should not be empty' }),
+    .refine((value) => value && value.length > 0),
 });
 
 function delay() {

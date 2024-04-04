@@ -28,6 +28,7 @@ export default function useOptimisticTaskCUD(tasks: string[]) {
         variant: 'destructive',
         description: result.error,
       });
+      return result.error;
     }
   };
 
