@@ -5,8 +5,9 @@ import DataList from './dataList';
 import { SubmitButton } from './submitButton';
 import useOptimisticTaskCUD from '@/hooks/useTaskUpdater';
 import { useState } from 'react';
+import { Task } from '@/interfaces/Task';
 
-export default function TodosComponent({ tasks }: { tasks: string[] }) {
+export default function TodosComponent({ tasks }: { tasks: Task[] }) {
   const { optimisticTasks, createTask, deleteTask, editTask } = useOptimisticTaskCUD(tasks);
   const [taskInput, setTaskInput] = useState('');
 

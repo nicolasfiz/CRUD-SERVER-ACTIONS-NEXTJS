@@ -1,8 +1,9 @@
 import { getTasks } from "@/actions/tasks";
 import TodosComponent from "@/components/todos-component";
+import { Task } from "@/interfaces/Task";
 
 export default async function Home() {
-  const tasks: string[] = await getTasks();
+  const tasks: Task[] = await getTasks();
 
   return (
     <main className="text-center py-28 px-20">

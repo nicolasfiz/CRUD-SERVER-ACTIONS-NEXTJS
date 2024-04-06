@@ -1,4 +1,5 @@
 'use client';
+import { Task } from '@/interfaces/Task';
 import ListElement from './listElement';
 
 export default function DataList({
@@ -6,7 +7,7 @@ export default function DataList({
   deleteTask,
   editTask,
 }: {
-  tasks: string[];
+  tasks: Task[];
   deleteTask: Function;
   editTask: Function;
 }) {

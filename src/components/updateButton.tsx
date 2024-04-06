@@ -13,8 +13,9 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Input } from './ui/input';
 import { useState } from 'react';
+import { Task } from '@/interfaces/Task';
 
-export default function UpdateButton({ task, updateFunction }: { task: string; updateFunction: Function }) {
+export default function UpdateButton({ task, updateFunction }: { task: Task; updateFunction: Function }) {
   const [newTask, setNewTask] = useState('');
   return (
     <AlertDialog>

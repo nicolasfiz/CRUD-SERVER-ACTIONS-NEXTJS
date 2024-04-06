@@ -11,8 +11,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import { Task } from '@/interfaces/Task';
 
-export default function DeleteButton({ task, deleteFunction }: { task: string; deleteFunction: Function }) {
+export default function DeleteButton({ task, deleteFunction }: { task: Task; deleteFunction: Function }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
